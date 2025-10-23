@@ -6,10 +6,10 @@ interface TitleScreenProps {
 
 export const TitleScreen = ({ onStart }: TitleScreenProps) => {
     return (
-        <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold mb-4">QuizQuest</h1>
-            <p className="text-lg mb-6">Test your knowledge!</p>
-            <Button onClick={onStart} className="w-full text-center justify-center">
+        <div className="flex flex-col items-center justify-center text-center h-full w-full">
+            <h1 className="text-6xl font-bold mb-4">QuizQuest</h1>
+            <p className="text-lg mb-8">Test your knowledge!</p>
+            <Button onClick={onStart}>
                 START
             </Button>
         </div>
