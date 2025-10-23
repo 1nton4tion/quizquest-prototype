@@ -31,7 +31,7 @@ export const ScoreScreen = ({ score, totalQuestions, onPlayAgain }: ScoreScreenP
                 <div className="text-2xl font-semibold">
                     Score: {score} / {totalQuestions}
                 </div>
-                <div className="text-lg text-gray-600">
+                <div className="text-lg text-gray-400">
                     ({Math.round(normalizedScore * 100)}%)
                 </div>
             </div>

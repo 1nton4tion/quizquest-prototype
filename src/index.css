@@ -37,42 +37,42 @@
 
 :root {
   --radius: 0;
-  --background: #fff;
-  --foreground: #000;
-  --card: #fff;
-  --card-foreground: #000;
-  --primary: #ffdb33;
-  --primary-hover: #ffcc00;
+  --background: #0a0a0a;
+  --foreground: #00ff88;
+  --card: #111111;
+  --card-foreground: #00ff88;
+  --primary: #00ff88;
+  --primary-hover: #00cc6a;
   --primary-foreground: #000;
-  --secondary: #000;
-  --secondary-foreground: #fff;
-  --muted: #aeaeae;
-  --muted-foreground: #5a5a5a;
-  --accent: #fae583;
-  --accent-foreground: #000;
-  --destructive: #e63946;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #00ff88;
+  --muted: #333333;
+  --muted-foreground: #666666;
+  --accent: #ff0080;
+  --accent-foreground: #fff;
+  --destructive: #ff0040;
   --destructive-foreground: #fff;
-  --border: #000;
+  --border: #00ff88;
 }
 
 .dark {
   --radius: 0;
-  --background: #1a1a1a;
-  --foreground: #f5f5f5;
-  --card: #242424;
-  --card-foreground: #f5f5f5;
-  --primary: #ffdb33;
-  --primary-hover: #ffcc00;
+  --background: #0a0a0a;
+  --foreground: #00ff88;
+  --card: #111111;
+  --card-foreground: #00ff88;
+  --primary: #00ff88;
+  --primary-hover: #00cc6a;
   --primary-foreground: #000;
-  --secondary: #3a3a3a;
-  --secondary-foreground: #f5f5f5;
-  --muted: #3f3f46;
-  --muted-foreground: #a0a0a0;
-  --accent: #fae583;
-  --accent-foreground: #000;
-  --destructive: #e63946;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #00ff88;
+  --muted: #333333;
+  --muted-foreground: #666666;
+  --accent: #ff0080;
+  --accent-foreground: #fff;
+  --destructive: #ff0040;
   --destructive-foreground: #fff;
-  --border: #3a3a3a;
+  --border: #00ff88;
 }
 
 @layer base {
@@ -82,5 +82,39 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Cyberpunk glow effects */
+.cyber-glow {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.cyber-glow-pink {
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+}
+
+.cyber-text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Animated background */
+body {
+  background: linear-gradient(45deg, #0a0a0a, #111111, #0a0a0a);
+  background-size: 400% 400%;
+  animation: cyber-gradient 10s ease infinite;
+}
+
+@keyframes cyber-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

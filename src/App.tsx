@@ -113,8 +113,8 @@ function App() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-4 bg-gray-900">
-      <Card className="w-200 h-150 p-6 shadow-none hover:shadow-none relative overflow-hidden">
+    <div className="flex justify-center items-center min-h-screen p-4 bg-background">
+      <Card className="w-200 h-150 p-6 shadow-none hover:shadow-none relative overflow-hidden cyber-glow">
         {/* Feedback Overlay - covers entire card including padding */}
         {showFeedback && (
           <div
@@ -128,8 +128,8 @@ function App() {
               width: '100%',
               height: '100%',
               backgroundColor: isCorrect
-                ? 'rgba(34, 197, 94, 0.3)'
-                : 'rgba(239, 68, 68, 0.3)'
+                ? 'rgba(0, 255, 136, 0.3)'
+                : 'rgba(255, 0, 64, 0.3)'
             }}
           >
           </div>

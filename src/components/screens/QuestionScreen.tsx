@@ -66,7 +66,7 @@ export const QuestionScreen = ({
                 {question.options.map((option, index) => (
                     <Card
                         key={index}
-                        className="p-4 cursor-pointer hover:bg-gray-50 transition-colors border-2 border-gray-200 hover:border-gray-300 flex items-center justify-center"
+                        className="p-4 cursor-pointer hover:bg-gray-800 transition-colors border-2 border-gray-200 hover:border-gray-300 flex items-center justify-center"
                         onClick={() => onAnswer(index)}
                     >
                         <div className="text-center text-sm font-medium leading-tight">
