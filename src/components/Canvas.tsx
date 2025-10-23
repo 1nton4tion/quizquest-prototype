@@ -102,7 +102,7 @@ export const Canvas = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen p-4">
-            <Card className="w-96 h-96 p-6 shadow-none hover:shadow-none">
+            <Card className="w-200 h-96 p-6 shadow-none hover:shadow-none">
                 {renderScreen()}
             </Card>
         </div>
