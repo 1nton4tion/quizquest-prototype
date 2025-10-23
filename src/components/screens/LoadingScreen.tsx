@@ -18,9 +18,8 @@ export const LoadingScreen = () => {
     }, []);
 
     return (
-        <div className="text-center space-y-4">
-            <h2 className="text-2xl font-semibold mb-4">Loading...</h2>
-            <Loader count={30} duration={1} delayStep={100} />
+        <div className="flex flex-col items-center justify-center text-center h-full w-full space-y-6">
+            <Loader count={50} duration={1} delayStep={100} className="w-full" />
             <p className="text-sm text-gray-600">
                 {loadingMessages[messageIndex]}...
             </p>
