@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import { cva, VariantProps } from "class-variance-authority";
-import React, { ButtonHTMLAttributes } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import React from "react";
+import type { ButtonHTMLAttributes } from "react";
 import { Slot } from "@radix-ui/react-slot";
 
 const buttonVariants = cva(
@@ -32,7 +33,7 @@ const buttonVariants = cva(
 
 export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
