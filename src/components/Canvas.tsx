@@ -14,6 +14,8 @@ export const Canvas = () => {
         score: 0,
         answers: []
     })
+    const [showFeedback, setShowFeedback] = useState(false)
+    const [isCorrect, setIsCorrect] = useState(false)
 
     // Handle loading screen timeout
     useEffect(() => {
@@ -36,27 +38,36 @@ export const Canvas = () => {
 
     const handleAnswer = (answerIndex: number) => {
         const newAnswers = [...gameState.answers, answerIndex]
-        const isCorrect = answerIndex === questions[gameState.currentQuestion].correct
-        const newScore = isCorrect ? gameState.score + 1 : gameState.score
+        const correct = answerIndex === questions[gameState.currentQuestion].correct
+        const newScore = correct ? gameState.score + 1 : gameState.score
 
-        setGameState(prev => ({
-            ...prev,
-            answers: newAnswers,
-            score: newScore
-        }))
+        // Show feedback
+        setIsCorrect(correct)
+        setShowFeedback(true)
 
-        // Move to next question or finish
-        if (gameState.currentQuestion < questions.length - 1) {
+        // Hide feedback after 1 second and then proceed
+        setTimeout(() => {
+            setShowFeedback(false)
+
             setGameState(prev => ({
                 ...prev,
-                currentQuestion: prev.currentQuestion + 1
+                answers: newAnswers,
+                score: newScore
             }))
-        } else {
-            setGameState(prev => ({
-                ...prev,
-                screen: 'score'
-            }))
-        }
+
+            // Move to next question or finish
+            if (gameState.currentQuestion < questions.length - 1) {
+                setGameState(prev => ({
+                    ...prev,
+                    currentQuestion: prev.currentQuestion + 1
+                }))
+            } else {
+                setGameState(prev => ({
+                    ...prev,
+                    screen: 'score'
+                }))
+            }
+        }, 1000)
     }
 
     const handlePlayAgain = () => {
@@ -83,6 +94,7 @@ export const Canvas = () => {
                         questionNumber={gameState.currentQuestion + 1}
                         totalQuestions={questions.length}
                         onAnswer={handleAnswer}
+                        showFeedback={showFeedback}
                     />
                 )
 
@@ -102,7 +114,26 @@ export const Canvas = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen p-4">
-            <Card className="w-200 h-150 p-6 shadow-none hover:shadow-none">
+            <Card className="w-200 h-150 p-6 shadow-none hover:shadow-none relative overflow-hidden">
+                {/* Feedback Overlay - covers entire card including padding */}
+                {showFeedback && (
+                    <div
+                        className="absolute inset-0 z-10 transition-opacity duration-100"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: isCorrect
+                                ? 'rgba(34, 197, 94, 0.3)'
+                                : 'rgba(239, 68, 68, 0.3)'
+                        }}
+                    >
+                    </div>
+                )}
                 {renderScreen()}
             </Card>
         </div>
