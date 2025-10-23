@@ -13,3 +13,9 @@ export interface GameState {
     score: number
     answers: number[]
 }
+
+export interface FinalMessage {
+    normalizedScore: number,
+    message: string,
+    emoji: string
+}

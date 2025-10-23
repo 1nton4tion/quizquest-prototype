@@ -21,7 +21,7 @@ export const LoadingScreen = () => {
         <div className="flex flex-col items-center justify-center text-center h-full w-full space-y-6">
             <Loader count={50} duration={1} delayStep={100} className="w-full" />
             <p className="text-sm text-gray-600">
-                {loadingMessages[messageIndex]}...
+                {loadingMessages[messageIndex]}..
             </p>
         </div>
     )

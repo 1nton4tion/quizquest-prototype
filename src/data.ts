@@ -1,4 +1,4 @@
-import type { Question } from './types'
+import type { Question, FinalMessage } from './types'
 
 export const questions: Question[] = [
     {
@@ -79,4 +79,18 @@ export const loadingMessages: string[] = [
     "Painting targets on red herrings.",
     "Cooling hot takes to lukewarm.",
     "Approving puns with legal."
+];
+
+export const finalMessages: FinalMessage[] = [
+    { normalizedScore: 1.0, message: "Perfect game. The trivia bows to you.", emoji: "🧠👑" },
+    { normalizedScore: 0.9, message: "Near-perfect. One more neuron and you’d be illegal.", emoji: "🚀" },
+    { normalizedScore: 0.8, message: "Elite recall. You study or you’re scary. Maybe both.", emoji: "📚" },
+    { normalizedScore: 0.7, message: "Strong performance. Minor guesswork detected.", emoji: "💪" },
+    { normalizedScore: 0.6, message: "Above average. You and the curve are on speaking terms.", emoji: "👍" },
+    { normalizedScore: 0.5, message: "Coin-flip champion. Luck and knowledge are co-parents.", emoji: "🎲" },
+    { normalizedScore: 0.4, message: "So close you can smell it. That smell is effort.", emoji: "😅" },
+    { normalizedScore: 0.3, message: "Some hits, some myths. Good groundwork.", emoji: "🧩" },
+    { normalizedScore: 0.2, message: "The journey begins. Maps are in the lobby.", emoji: "🗺️" },
+    { normalizedScore: 0.1, message: "You discovered new wrong answers. Valuable science.", emoji: "🔬" },
+    { normalizedScore: 0.0, message: "All airballs. Reload knowledge and try again.", emoji: "🔄" }
 ];
