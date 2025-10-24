@@ -118,3 +118,87 @@ body {
     background-position: 0% 50%;
   }
 }
+
+/* Terminal styling */
+.terminal-container {
+  background: #000;
+  border: 2px solid #00ff88;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  overflow: hidden;
+  cursor: text;
+  position: relative;
+}
+
+.terminal-body {
+  background: #000;
+  color: #00ff88;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00ff88 #000;
+  position: relative;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 4px;
+}
+
+.terminal-line {
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-prompt {
+  color: #00ff88;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.terminal-text {
+  color: #00ff88;
+}
+
+.terminal-cursor {
+  color: #00ff88;
+  animation: blink 1s infinite;
+}
+
+.terminal-input {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: transparent;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}

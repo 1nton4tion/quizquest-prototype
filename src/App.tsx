@@ -79,10 +79,17 @@ function App() {
     })
   }
 
+  const handleBreakout = () => {
+    // Special function called when "breakout" is typed in terminal
+    console.log('Breakout command detected!')
+    // You can add any special functionality here
+    alert('Breakout command activated! 🎮')
+  }
+
   const renderScreen = () => {
     switch (gameState.screen) {
       case 'title':
-        return <TitleScreen onStart={handleStart} />
+        return <TitleScreen onStart={handleStart} onBreakout={handleBreakout} />
 
       case 'loading':
         return <LoadingScreen />
@@ -108,7 +115,7 @@ function App() {
         )
 
       default:
-        return <TitleScreen onStart={handleStart} />
+        return <TitleScreen onStart={handleStart} onBreakout={handleBreakout} />
     }
   }
 
