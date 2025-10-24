@@ -1,4 +1,4 @@
-export type Screen = 'title' | 'loading' | 'question' | 'score'
+export type Screen = 'title' | 'loading' | 'question' | 'breakout' | 'score'
 
 export interface Question {
     id: number

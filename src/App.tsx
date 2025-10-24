@@ -4,6 +4,7 @@ import { TitleScreen } from './components/screens/TitleScreen'
 import { LoadingScreen } from './components/screens/LoadingScreen'
 import { QuestionScreen } from './components/screens/QuestionScreen'
 import { ScoreScreen } from './components/screens/ScoreScreen'
+import { BreakoutScreen } from './components/breakout'
 import type { GameState } from './types'
 import { questions, GAME_CONFIG } from './data'
 
@@ -16,18 +17,21 @@ function App() {
   })
   const [showFeedback, setShowFeedback] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
+  const [isBreakoutMode, setIsBreakoutMode] = useState(false)
 
   // Handle loading screen timeout
   useEffect(() => {
     if (gameState.screen === 'loading') {
       const timer = setTimeout(() => {
-        setGameState(prev => ({ ...prev, screen: 'question' }))
+        const nextScreen = isBreakoutMode ? 'breakout' : 'question'
+        setGameState(prev => ({ ...prev, screen: nextScreen }))
       }, GAME_CONFIG.LOADING_DURATION)
       return () => clearTimeout(timer)
     }
-  }, [gameState.screen])
+  }, [gameState.screen, isBreakoutMode])
 
   const handleStart = () => {
+    setIsBreakoutMode(false)
     setGameState({
       screen: 'loading',
       currentQuestion: 0,
@@ -70,7 +74,41 @@ function App() {
     }, 1000)
   }
 
+  const handleBreakoutAnswer = (isCorrect: boolean) => {
+    const newAnswers = [...gameState.answers, isCorrect ? questions[gameState.currentQuestion].correct : -1]
+    const newScore = isCorrect ? gameState.score + 1 : gameState.score
+
+    // Show feedback
+    setIsCorrect(isCorrect)
+    setShowFeedback(true)
+
+    // Hide feedback after 1 second and then proceed
+    setTimeout(() => {
+      setShowFeedback(false)
+
+      setGameState(prev => ({
+        ...prev,
+        answers: newAnswers,
+        score: newScore
+      }))
+
+      // Move to next question or finish
+      if (gameState.currentQuestion < questions.length - 1) {
+        setGameState(prev => ({
+          ...prev,
+          currentQuestion: prev.currentQuestion + 1
+        }))
+      } else {
+        setGameState(prev => ({
+          ...prev,
+          screen: 'score'
+        }))
+      }
+    }, 1000)
+  }
+
   const handlePlayAgain = () => {
+    setIsBreakoutMode(false)
     setGameState({
       screen: 'title',
       currentQuestion: 0,
@@ -82,8 +120,14 @@ function App() {
   const handleBreakout = () => {
     // Special function called when "breakout" is typed in terminal
     console.log('Breakout command detected!')
-    // You can add any special functionality here
-    alert('Breakout command activated! 🎮')
+    // Set breakout mode and go to loading screen
+    setIsBreakoutMode(true)
+    setGameState({
+      screen: 'loading',
+      currentQuestion: 0,
+      score: 0,
+      answers: []
+    })
   }
 
   const renderScreen = () => {
@@ -102,6 +146,20 @@ function App() {
             totalQuestions={questions.length}
             onAnswer={handleAnswer}
             showFeedback={showFeedback}
+          />
+        )
+
+      case 'breakout':
+        return (
+          <BreakoutScreen
+            question={{
+              question: questions[gameState.currentQuestion].question,
+              answers: questions[gameState.currentQuestion].options,
+              correct: questions[gameState.currentQuestion].correct
+            }}
+            questionNumber={gameState.currentQuestion + 1}
+            totalQuestions={questions.length}
+            onAnswer={handleBreakoutAnswer}
           />
         )
 
